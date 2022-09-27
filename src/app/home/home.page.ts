@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Camera, CameraResultType, GalleryPhotos } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  image: GalleryPhotos
 
-  constructor() {}
+  constructor() { }
 
+  async foto() {
+    try {
+      this.image = await Camera.pickImages({
+        quality: 90,
+        correctOrientation: true
+      });
+
+      
+    } catch (error) {
+      alert(error.message);
+    }
+
+
+  }
 }
